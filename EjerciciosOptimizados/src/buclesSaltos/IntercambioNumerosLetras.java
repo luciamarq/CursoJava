@@ -1,12 +1,12 @@
 package buclesSaltos;
 
-public class NumerosLetras {
+public class IntercambioNumerosLetras {
 
 	public static void main(String[] args) {
 
-
 		/*
-		 * PRIMERO LA VERSION PRIMITIVA:
+		 * PRIMERO LA VERSION PRIMITIVA: 
+		 * donde unicamente a partir del 10 me saca: diez y uno:
 		 */
 		
 		int num = 15;
@@ -91,6 +91,7 @@ public class NumerosLetras {
 				"seis", "siete", "ocho", "nueve", "diez", "once", "doce",
 				"trece", "catorce", "quince"};
 		
+		//Para las decenas:
 		String [] a2 = {"diez", "veinte", "treinta", "cuarenta", "cincuenta", 
 				"ochenta", "noventa"};
 		
@@ -105,11 +106,6 @@ public class NumerosLetras {
 				
 			}
 		}
-		
-			
-		
-		
-		
 
 	}
 

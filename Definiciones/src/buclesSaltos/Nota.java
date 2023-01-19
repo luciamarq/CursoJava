@@ -5,7 +5,7 @@ public class Nota {
 	static String notaFinal;
 
 	public static void main(String[] args) {
-		nota = 0;
+		nota = 5;
 		switch(nota) {
 		case 0:
 		case 1:

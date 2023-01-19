@@ -1,9 +1,12 @@
 package buclesSaltos;
 
-public class Fecha {
+public class Fecha1 {
 
 	public static void main(String[] args) {
 		
+		/*
+		 * Validar una fecha segun dia, mes y año: (FORMA SIMPLE)
+		 */
 		int dia = 30;
 		int mes = 6;
 		int ano = 2015;
@@ -24,10 +27,6 @@ public class Fecha {
 		else {
 			System.out.println("El año no es valido");
 		}
-		
-		
-		
-		
 
 	}
 

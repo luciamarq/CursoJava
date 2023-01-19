@@ -1,12 +1,30 @@
 package ejercicioCast;
 
 public class PruebaCast {
-	int numero = 7;
-	
-	
 
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		int numero= 12345;
+		char c = (char) numero;
+		float f = (float)numero;
+		double d = (double) numero;
+		byte b = (byte) numero;
+		short s = (short) numero;
+		
+		//Mostamos la salida como:
+		
+		System.out.println("int " +  numero);
+		System.out.println("char " +  c );
+		System.out.println("float " + f );
+		System.out.println("double " + d);
+		System.out.println("byte " + b);
+		System.out.println("short " + s );
+		
+		
+		
+		
+		
 
 	}
 

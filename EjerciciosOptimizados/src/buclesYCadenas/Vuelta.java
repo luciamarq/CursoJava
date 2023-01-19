@@ -1,16 +1,20 @@
-package buclesCadenas;
+package buclesYCadenas;
 
 public class Vuelta {
 
 	public static void main(String[] args) {
 		
-		//System.out.println(args[0]);
+		/*
+		 * Recogemos una frase como argumento (param) y manipularla de diferentes formas:
+		 */
+		
+		
 		
 		String salida="";
 		String salida2="";
 		for(String ele: args) {
 			salida2 = salida2 + ele + " ";
-			//salida = "" + " " + ele + salida; 
+		
 		}
 		
 		String[] palabras = salida2.split(" ");
@@ -75,7 +79,7 @@ public class Vuelta {
 		char c1=salida2.charAt(0);
 		String salida5="";
 		
-		//System.out.println(c1);
+		
 		for(int i = 1; (salida2+c1).charAt(i)!=c1; i++) { //se hace la comparativa entre el chart y el caracter especial. 
 			salida5=salida2.charAt(i)+ salida5;
 			
@@ -94,11 +98,7 @@ public class Vuelta {
 		}
 		
 		System.out.println(salida6);
-		
+
 	}
-	
-	
-	
-	
 
 }

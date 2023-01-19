@@ -1,25 +1,14 @@
-package datosVariablesConstantes;
+package DatosVariablesConstantes;
 
 public class DatosArray {
 
 	public static void main(String[] args) {
 		
-		int nuevoArray[]= {31,28,31,30,31,30,31,31,30,31,30,31};
+		/* 
+		 * Rellenar el array manualmente: 
+		 */
 		int nuevoArray2[][]=new int[5][7];
-		int contador=0;
 		
-		for(int i=0; i<nuevoArray2.length; i++) {
-			for (int j=0; j<nuevoArray2[i].length; j++){
-				if(contador <=31 ) {
-					nuevoArray2[i][j]=++contador;
-					//System.out.println(nuevoArray2);
-				}
-			}
-		}
-		
-		
-	
-		/*
 		nuevoArray2[0][0]=1;
 		nuevoArray2[0][1]=2;
 		nuevoArray2[0][2]=3;
@@ -43,13 +32,10 @@ public class DatosArray {
 		nuevoArray2[2][6]=21;
 		nuevoArray2[3][0]=22;
 		nuevoArray2[3][1]=1;
-		*/
+		
+		System.out.println(nuevoArray2);
+		
 		//ETC...
-		
-		
-		
-		
-		
 
 	}
 
