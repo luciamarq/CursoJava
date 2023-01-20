@@ -31,12 +31,14 @@ public abstract class Figura {
 		return "Figura [base=" + base + ", altura=" + altura + "]";
 	}
 	
+	/*
+	 * lo defino como abstract ya que en cada clase hija
+	 * operara de una manera diferente segun la figura que sea:
+	 */
 	
 	abstract double cacularArea(); 
 	
 	abstract String dibujar();
-	
-
 
 }
 
