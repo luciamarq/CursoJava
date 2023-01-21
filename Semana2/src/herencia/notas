@@ -1,0 +1,9 @@
+Buen trabajo
+Sobre Agroalimentaria
+Cada ejercicio debe estar en un package distinto, si no, las clases estan todas mezcladas
+Al construir, le podemos pasar los datos al padre, para que cargue las variable el.
+Cada toString deberia empezar invocando a la string del padre
+En el test, Producto no se deberia crear suelto nunca; lo mismo pasa con congelados...
+Invocas un f.toString, que se supone devuelve una string pero no la recoges
+Las variables de una letra (n, a2, a, c, f, p) no son claras...no se sabee que son
+Las impresiones no pueden salir completas, ya que no se invocan las impresiones de los padres
