@@ -1,5 +1,6 @@
 package automovil;
 
+
 /*
  * INTERFAZ PARA TODA LA CLASE VEHICULO
  */
