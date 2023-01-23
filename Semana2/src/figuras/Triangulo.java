@@ -1,9 +1,9 @@
-package herencia2;
+package figuras;
 
 public class Triangulo extends Figura {
 
 	public Triangulo(int base, int altura) {
-		super();
+		super(base, altura);
 		
 		this.setAltura(getAltura());
 		this.setBase(getBase());

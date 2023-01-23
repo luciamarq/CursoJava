@@ -1,15 +1,23 @@
-package herencia2;
+package figuras;
 
 public abstract class Figura {
-	
+	protected int co_x, co_y;
+	Punto coor;
 	private int base;
 	private int altura;
 	
-	public Figura() {
+	public Figura(int base, int altura) {
 		this.setBase(base);
 		this.setAltura(altura);
 	}
 
+	
+	public int getCoor() {
+		return co_x;
+		
+		
+	}
+		
 	public int getBase() {
 		return base;
 	}
@@ -39,6 +47,8 @@ public abstract class Figura {
 	abstract double cacularArea(); 
 	
 	abstract String dibujar();
+	
+	
 
 }
 

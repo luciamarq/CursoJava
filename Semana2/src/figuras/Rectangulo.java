@@ -1,10 +1,10 @@
-package herencia2;
+package figuras;
 
 public class Rectangulo extends Figura {
 	
 	
 	public Rectangulo(int base, int altura) {
-		super();
+		super(base, altura);
 		this.setAltura(getAltura());
 		this.setBase(getBase());
 		this.setAltura(altura);

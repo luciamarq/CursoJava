@@ -1,4 +1,4 @@
-package herencia2;
+package figuras;
 
 public class Circulo extends Figura {
 
@@ -7,7 +7,7 @@ public class Circulo extends Figura {
 	 */
 	
 	public Circulo (int base, int altura) {
-		super();
+		super(base, altura);
 		this.setAltura(getAltura());
 		this.setBase(getBase());
 		this.setAltura(altura);
@@ -17,13 +17,13 @@ public class Circulo extends Figura {
 	@Override
 	double cacularArea() {
 		double a = this.getBase()*0.5;
-		double area = Math.pow(a, 2);
+		double area = Math.PI * Math.pow(this.getBase()*0.5,2);
 		return area;
 	}
 
 	@Override
 	String dibujar() {
-		// TODO Auto-generated method stub
+		
 		return "Dibujando un CIRCULO DE.... " + "RADIO " + (this.getBase()*0.5);
 	}
 

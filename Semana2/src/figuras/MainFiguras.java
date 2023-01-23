@@ -1,4 +1,4 @@
-package herencia2;
+package figuras;
 
 public class MainFiguras {
 
@@ -18,6 +18,16 @@ public class MainFiguras {
 		
 		
 		Figura circulo = new Circulo(9,7);
+		
+		
+		/*
+		 * Ahora vamos a probar los puntos y el metodo invertir:
+		 * 
+		 */
+		
+		Punto punto = new Punto(3,6);
+		punto.inverse();
+		System.out.println(punto.toString());
 		
 		System.out.println(circulo.dibujar());
 		System.out.println("El area de este CIRCULO es " + circulo.cacularArea());
