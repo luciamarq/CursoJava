@@ -7,8 +7,9 @@ public class Agua extends Congelado {
 	//CONSTRUCTOR:
 	public Agua(String fecha_caducidad, String n_lote, String temp_congelado, int salinidad) {
 		super(fecha_caducidad, n_lote, temp_congelado);
-		this.setSalinidad(salinidad);
+		setSalinidad(salinidad);
 	}
+
 	
 	//getters and setters:
 
@@ -21,11 +22,13 @@ public class Agua extends Congelado {
 		this.salinidad = salinidad;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Agua [salinidad=" + salinidad + ", getTemp_congelado()=" + getTemp_congelado()
-				+ ", getFecha_caducidad()=" + getFecha_caducidad() + ", getN_lote()=" + getN_lote() + "]";
+		return "Agua" + super.toString() + " [salinidad=" + salinidad + "]";
 	}
+
+	
 
 	
 	

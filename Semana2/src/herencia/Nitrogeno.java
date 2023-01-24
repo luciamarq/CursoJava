@@ -10,14 +10,17 @@ public class Nitrogeno extends Congelado {
 	
 	public Nitrogeno(String fecha_caducidad, String n_lote, String temp_congelado, String metodo, String t_exposicion) {
 		super(fecha_caducidad, n_lote, temp_congelado);
-		this.metodo = metodo;
-		this.t_exposicion = t_exposicion;
+		setMetodo(metodo);
+		setT_exposicion(t_exposicion);
+		
 	}
+	
+	
 	//getters and setter:
 	public String getMetodo() {
 		return metodo;
 	}
-	
+
 	public void setMetodo(String metodo) {
 		this.metodo = metodo;
 	}
@@ -28,12 +31,13 @@ public class Nitrogeno extends Congelado {
 		this.t_exposicion = t_exposicion;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Nitrogeno [metodo=" + metodo + ", t_exposicion=" + t_exposicion + ", getTemp_congelado()="
-				+ getTemp_congelado() + ", getFecha_caducidad()=" + getFecha_caducidad() + ", getN_lote()="
-				+ getN_lote() + "]";
+		return "Nitrogeno" + super.toString() + " [metodo=" + metodo + ", t_exposicion=" + t_exposicion + "]";
 	}
+
+	
 
 	
 

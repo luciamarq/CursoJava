@@ -8,13 +8,11 @@ public class Fresco extends Producto {
 	
 	//CONSTRUCTOR:
 	public Fresco(String fecha_caducidad, String n_lote, String fecha_envasado, String pais_origen) {
-		super();
-		this.setFecha_caducidad(fecha_caducidad);
-		this.setPais_origen(pais_origen);
-		this.setFecha_caducidad(fecha_caducidad);
-		this.setN_lote(n_lote);
-		this.setFecha_envasado(fecha_envasado);
+		super(fecha_caducidad, n_lote);
+		setFecha_envasado(fecha_envasado);
+		setPais_origen(pais_origen);
 	}
+
 
 	//getters and setters:
 	public String getFecha_envasado() {
@@ -33,11 +31,14 @@ public class Fresco extends Producto {
 		this.pais_origen = pais_origen;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Fresco [fecha_envasado=" + fecha_envasado + ", pais_origen=" + pais_origen + ", getFecha_caducidad()="
-				+ getFecha_caducidad() + ", getN_lote()=" + getN_lote() + "]";
+		return "Fresco" + super.toString() + " [fecha_envasado=" + fecha_envasado + ", pais_origen=" + pais_origen + "]";
 	}
+
+	
+
 	
 	
 	

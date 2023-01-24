@@ -9,8 +9,8 @@ public class Producto {
 	//CONSTRUCTOR:
 	public Producto(String fecha_caducidad, String n_lote) {
 		super();
-		this.setFecha_caducidad(fecha_caducidad);
-		this.setN_lote(n_lote);
+		setFecha_caducidad(fecha_caducidad);
+		setN_lote(n_lote);
 	}
 	
 	public Producto() {
@@ -33,7 +33,7 @@ public class Producto {
 
 	@Override
 	public String toString() {
-		return "Producto [fecha_caducidad=" + fecha_caducidad + ", n_lote=" + n_lote + "]";
+		return "[fecha_caducidad=" + fecha_caducidad + ", n_lote=" + n_lote + "]";
 	}
 	
 	
