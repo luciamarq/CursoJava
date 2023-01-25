@@ -1,4 +1,4 @@
-package cuentas.filtros;
+package TestFiltros;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,7 +6,10 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+import cuentas.filtros.Filtros;
+
 class FiltrosTest {
+
 	final String CONCEPTO = "ESTO ES 10";
 	final String TITULAR3 = "Maria Calvo Cox";
 	final String CONCEPTO2="ESTO TIENE MUCHOS MAS CARACTERES";

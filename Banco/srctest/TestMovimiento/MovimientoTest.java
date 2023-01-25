@@ -1,4 +1,4 @@
-package EjercicioCuentas;
+package TestMovimiento;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import EjercicioCuentas.Movimiento;
 
 class MovimientoTest {
 	
@@ -30,20 +32,11 @@ class MovimientoTest {
 	}
 
 	@Test
-	void testMovimiento() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	void testGetmConcepto() {
 		mov.setmConcepto(CONCEPTO);
 		assertEquals(CONCEPTO, mov.getmConcepto());
 	}
 
-	@Test
-	void testSetmConcepto() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testGetmFecha() {
@@ -52,21 +45,11 @@ class MovimientoTest {
 		assertEquals(hoy, mov.getmFecha());
 	}
 
-	@Test
-	void testSetmFecha() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testGetmImporte() {
 		mov.setmImporte(IMPORTE);
 		assertEquals(IMPORTE, mov.getmImporte());
 	}
-
-	@Test
-	void testSetmImporte() {
-		fail("Not yet implemented");
-	}
-
 
 }

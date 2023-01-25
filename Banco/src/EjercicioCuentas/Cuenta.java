@@ -21,10 +21,10 @@ public class Cuenta {
 	protected String mNumero;
 	protected String Mtitular;
 	
-	double saldoTotal=30000;
+	double saldoTotal=100.0;
 	
 	//Constructor:
-	public Cuenta(String mNumero, String mtitular) {
+	public Cuenta(String mNumero, String mtitular)throws Exception {
 		if(Filtros.controlLongitud(mtitular, t_max, t_min)) {
 			this.mNumero = mNumero;
 			Mtitular = mtitular;
@@ -58,14 +58,14 @@ public class Cuenta {
 		
 	}
 	
-	void ingresar(double x) throws Exception {
+	public void ingresar(double x) throws Exception {
 		ingresar("Ingreso en efectivo", x);
 		
 	}
 	/*
 	 * Filtra el concepto tiene menos de 10 o mas de 100 caracteres
 	 */
-	void ingresar(String concepto, double x) throws Exception {
+	public void ingresar(String concepto, double x) throws Exception {
 		if(x<=0) {
 			throw new Exception("No se puede ingresar una cantidad negativa");
 		}
@@ -75,15 +75,15 @@ public class Cuenta {
 		
 	}
 	
-	void retirar (double x) throws Exception {
+	public void retirar (double x) throws Exception {
 		retirar("Retirada en efectivo", x);
 		
 		
 	}
 	
-	void retirar(String concepto, double x) throws Exception {
+	public void retirar(String concepto, double x) throws Exception {
 		if(x<0) {
-			throw new Exception ("No se puede reitirar una cantidad negativa");
+			throw new Exception ("No se puede retirar una cantidad negativa");
 		}
 		
 		if(getSaldo()<x) {
