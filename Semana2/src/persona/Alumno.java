@@ -7,15 +7,19 @@ import java.util.List;
 public class Alumno extends Persona {
 	
 	private int curso;
-	private String  [] asignaturas;
 	
+	private List<String> asignaturas = new ArrayList<String>();
 	
+	/*
+	 * Dejamos el constructor sin añadir necesariamente el array de asignaturas
+	 * ya que se añadiran posteriormente en el main:
+	 */
 	public Alumno(String codPersona, String nombre, int edad, String num_telf, int curso) {
 		super(codPersona, nombre, edad, num_telf);
-		this.curso = curso;
-		this.asignaturas=asignaturas;
+		setCurso(curso);
 	}
 
+	
 	public int getCurso() {
 		return curso;
 	}
@@ -24,23 +28,26 @@ public class Alumno extends Persona {
 		this.curso = curso;
 	}
 
-	public String[] getAsignaturas() {
+	public List<String> getAsignaturas() {
 		return asignaturas;
-		
 	}
-	public void setAsignaturas() {
-		this.asignaturas=asignaturas;
-		
-		
-	}
-	
 
+	/*
+	 * Le pasamos como parametro una String con el nombre de la asignatura que añadiremos al array de 
+	 * asiganturas. 
+	 */
+	public void setAsignaturas(String asignatura) {
+		this.asignaturas = asignaturas;
+		asignaturas.add(asignatura);
+	}
+
+	
 	@Override
 	public String toString() {
-		return "Alumno" + super.toString() + " [curso=" + curso + ", asignaturas=" + Arrays.toString(asignaturas) + "]";
+		return "Alumno " + super.toString() + " [curso=" + curso + ", asignaturas=" + asignaturas + "]";
 	}
-
-	@Override
+	
+	
 	/*
 	 *  Muestra los atributos propios de cada clase hija:
 	 */
@@ -48,6 +55,10 @@ public class Alumno extends Persona {
 		System.out.println("Atributos especificos de alumno: " + " curso, asignatura");
 		
 	}
+
+
+
+
 
 
 	

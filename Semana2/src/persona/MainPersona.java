@@ -9,7 +9,11 @@ public class MainPersona {
 		 */
 		
 		Alumno alumno = new Alumno("45097767W", "Lucia", 12, "896781827",6);
-		//alumno.setAsignaturas("Mates");
+		/*
+		 * Añadimos la asignatura mates al alumno 
+		 */
+		alumno.setAsignaturas("Mates");
+		alumno.setAsignaturas("Historia");
 		System.out.println(alumno.toString());
 		
 		Profesor profesor = new Profesor("46076655D", "Luis", 47, "456890976", 1200, "6/9/2001");		
