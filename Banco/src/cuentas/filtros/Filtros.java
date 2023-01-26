@@ -1,6 +1,8 @@
 package cuentas.filtros;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 
 public class Filtros {
 
@@ -8,6 +10,16 @@ public class Filtros {
 	 * FILTROS PARA MI PROYECTO BANCO:
 	 */
 	
+	
+	public static boolean fechaCorrecta(String fecha) {
+		
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate fecha_correcta = LocalDate.parse(fecha,formato);
+		String fechaCoString = formato.format(fecha_correcta);
+		//return(fecha.contains());
+		
+	}
+
 	/*
 	 * 1) Los nombres de titular deben de tener entre 20 y 30 caracteres
 	 */

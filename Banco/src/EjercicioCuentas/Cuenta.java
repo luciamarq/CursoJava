@@ -24,10 +24,14 @@ public class Cuenta {
 	double saldoTotal=100.0;
 	
 	//Constructor:
+	//Aplicamos el filtro del control de la longitud del titular:
 	public Cuenta(String mNumero, String mtitular)throws Exception {
 		if(Filtros.controlLongitud(mtitular, t_max, t_min)) {
 			this.mNumero = mNumero;
 			Mtitular = mtitular;
+		}
+		else {
+			throw new Exception ("Titular con pocos caracteres");
 		}
 		
 	}
@@ -58,12 +62,14 @@ public class Cuenta {
 		
 	}
 	
+	
 	public void ingresar(double x) throws Exception {
 		ingresar("Ingreso en efectivo", x);
 		
 	}
 	/*
-	 * Filtra el concepto tiene menos de 10 o mas de 100 caracteres
+	 * Si la cantidad a ingresar es negativa -> Excepcion
+	 * Si la cantidad a ingresar es menor que el saldo -> Saldo insuficiente
 	 */
 	public void ingresar(String concepto, double x) throws Exception {
 		if(x<=0) {
@@ -80,7 +86,10 @@ public class Cuenta {
 		
 		
 	}
-	
+	/*
+	 * Si la cantidad a retirar es negativa -> Excepcion
+	 * Si la cantidad a retirar es menor que el saldo -> Saldo insuficiente
+	 */
 	public void retirar(String concepto, double x) throws Exception {
 		if(x<0) {
 			throw new Exception ("No se puede retirar una cantidad negativa");
@@ -98,6 +107,10 @@ public class Cuenta {
 		return "Cuenta [mMovimientos=" + mMovimientos + ", mNumero=" + mNumero + ", Mtitular=" + Mtitular
 				+ ", saldoTotal=" + saldoTotal + "]";
 	}
+	
+
+	
+	
 	
 	
 	

@@ -8,7 +8,16 @@ import org.junit.jupiter.api.Test;
 
 import EjercicioCuentas.Cuenta;
 
+/*
+ * 
+ * PRUEBA TEST PARA LA CLASE CUENTAS
+ */
+
 class CuentaTest {
+	
+	/*
+	 * variables para el test:
+	 */
 	private String N_CUENTA = "1ES243567";
 	private String TITULAR = "Lucia MARQUEZ";
 	private String TITULAR_ERROR = "WER";
@@ -25,27 +34,13 @@ class CuentaTest {
 		cuenta = new Cuenta (N_CUENTA, TITULAR);
 		
 	}
-	
+	/*
 	void testInicio() throws Exception {
 		Assertions.assertThrows(Exception.class, () -> {
 			new Cuenta (N_CUENTA, TITULAR);
 		});
 	}
-
-	@Test
-	void testAddMovimientoStringDouble() {
-		
-	}
-
-	@Test
-	void testAddMovimientoMovimiento() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetSaldo() {
-		fail("No lo puedo probar porque mi variable Saldo es global");
-	}
+	*/
 
 	@Test
 	void testIngresarDouble() throws Exception {
@@ -77,5 +72,33 @@ class CuentaTest {
 			cuenta.retirar(CONCEPTO1, IMPORTE1);
 		});
 	}
-
+	
+	/*
+	 * Ahora vamos con los importes negativos:
+	 */
+	@Test
+	void testRetirarNegativo_double() {
+		Assertions.assertThrows(Exception.class, () -> {
+			cuenta.retirar(IMPORTE2);
+		});
+		
+	}
+	@Test
+	void testRetirarNegativo_StringDouble() {
+		Assertions.assertThrows(Exception.class, () -> {
+			cuenta.retirar(CONCEPTO1,IMPORTE2);
+		});
+	}
+	@Test
+	void testIngresarNegativo_Double() {
+		Assertions.assertThrows(Exception.class, () -> {
+			cuenta.ingresar(IMPORTE2);
+		});
+	}
+	@Test
+	void testIngresarNegativo_StringDouble() {
+		Assertions.assertThrows(Exception.class, () -> {
+			cuenta.retirar(CONCEPTO1, IMPORTE2);
+		});
+	}
 }

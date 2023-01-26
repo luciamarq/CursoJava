@@ -1,5 +1,6 @@
 package TestFiltros;
 
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
@@ -19,6 +20,23 @@ class FiltrosTest {
 	final LocalDate fecha = LocalDate.parse("2022-03-04");
 	final LocalDate hoy = LocalDate.now();
 	final LocalDate fecha3 = LocalDate.parse("1998-12-21");
+	final String fecha4 = "08-07-2022";
+	final String fecha5 = "09/07/1997";
+	
+	/*
+	 * Revisar fechaCorrecta:
+	 */
+	@Test
+	void fechaCorrecta() {
+		assertTrue(Filtros.fechaCorrecta(fecha4));
+	}
+	
+	/*
+	 * ok
+	 */
+	void fechaIncorrecta() {
+		assertFalse(Filtros.fechaCorrecta(fecha5));
+	}
 	
 	@Test
 	void testLong_maxima() {
@@ -29,6 +47,7 @@ class FiltrosTest {
 	void testLong_maxPasa20() {
 		assertTrue(Filtros.long_maxima(TITULAR1, 21));
 	}
+
 	
 	/*
 	 * Pasa los 30 caracteres, por lo que devuelve false:

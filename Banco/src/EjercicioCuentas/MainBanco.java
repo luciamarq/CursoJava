@@ -18,7 +18,7 @@ public class MainBanco {
 		/*
 		 * Prueba retirada en la cuenta
 		 */
-		c.retirar(50);
+		c.retirar(30);
 		System.out.println(c.toString());
 		
 		/*
