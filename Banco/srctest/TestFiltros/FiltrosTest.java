@@ -1,10 +1,10 @@
 package TestFiltros;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 
+import org.hamcrest.core.IsNot;
 import org.junit.jupiter.api.Test;
 
 import cuentas.filtros.Filtros;
@@ -23,21 +23,27 @@ class FiltrosTest {
 	final String fecha4 = "08-07-2022";
 	final String fecha5 = "09/07/1997";
 	
-	/*
-	 * Revisar fechaCorrecta:
-	 */
+	
 	@Test
-	void fechaCorrecta() {
-		assertTrue(Filtros.fechaCorrecta(fecha4));
+	void testfechaCorrecta() {
+		assertNotNull(Filtros.fechaCorrecta(fecha4));		
 	}
 	
-	/*
-	 * ok
-	 */
-	void fechaIncorrecta() {
-		assertFalse(Filtros.fechaCorrecta(fecha5));
+	@Test
+	void testFechaNoOk() {
+		assertNull(Filtros.fechaCorrecta(fecha5));
 	}
 	
+	@Test
+	void testFechaOkFormato() {
+		assertNotNull(Filtros.fechaCorrecta(fecha4, "dd-MM-yyyy"));
+	}
+	
+	@Test
+	void testFechaFormato() {
+		assertNull(Filtros.fechaCorrecta(fecha5, "yyyy/MM/dd"));
+	}
+
 	@Test
 	void testLong_maxima() {
 		assertFalse(Filtros.long_maxima(TITULAR1, 20));

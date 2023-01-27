@@ -2,6 +2,8 @@ package cuentas.filtros;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Optional;
 
 
 public class Filtros {
@@ -10,14 +12,35 @@ public class Filtros {
 	 * FILTROS PARA MI PROYECTO BANCO:
 	 */
 	
+	/*
+	 * Comprobaremos si el formato de la fecha es correcto dada una String: 
+	 */
+	public static LocalDate fechaCorrecta (String fecha, String formato) {
+		
+		DateTimeFormatter formato_f = DateTimeFormatter.ofPattern(formato);
+		/*
+		 * En vez de un Optional simplficamos el codigo 
+		 * incializando la fecha a null;
+		 */
+		LocalDate fecha_correcta = null;
+		
+		try {
+			fecha_correcta = LocalDate.parse(fecha, formato_f);
+			if(fecha_correcta!=null) {
+				return fecha_correcta;
+			}
+		
+		}catch(DateTimeParseException e) {
+			
+		}
+		return null;	
+	}
+	/*
+	 * Sobrecarga del metodo:
+	 */
 	
-	public static boolean fechaCorrecta(String fecha) {
-		
-		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		LocalDate fecha_correcta = LocalDate.parse(fecha,formato);
-		String fechaCoString = formato.format(fecha_correcta);
-		//return(fecha.contains());
-		
+	public static LocalDate fechaCorrecta(String fecha) {
+		return fechaCorrecta(fecha, "dd-MM-yyyy");
 	}
 
 	/*
