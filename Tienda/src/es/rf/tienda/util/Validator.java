@@ -18,9 +18,9 @@ import java.time.format.DateTimeParseException;
  *  
  * ******************************************************************************************/
 public class Validator {
-	//OK
-	private static final String ALFANUMERIC_PATTERN = "^[0-9a-zA-Z]+$";
 	
+	private static final String ALFANUMERIC_PATTERN = "^[a-zA-Z0-9]*$";
+	private static final String CODIGO_PRODUCTO_PATTERN ="^[A-Z]{2}+\\d{3}$";
 	private static final String PASSWORD_PATTERN = 
             "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})";
 	/**
@@ -70,7 +70,11 @@ public class Validator {
 	 * 
 	 * **************************************************************************************/
 	public static boolean isAlfanumeric(String texto){
-		return (texto != null && texto.matches(ALFANUMERIC_PATTERN));
+		return(texto.matches(ALFANUMERIC_PATTERN));
+	}
+	//DEBE CONTENER 2 LETRAS MAYUSCULAS Y 3 UMEROS:
+	public static boolean codigoProductoValido(String codigo) {
+		return(codigo.matches(CODIGO_PRODUCTO_PATTERN));
 	}
 	/*
 	public static boolean isVacio(String prueba){
@@ -115,7 +119,6 @@ public class Validator {
 	 * 
 	 * **************************************************************************************/
 	public static boolean isEmailValido(String email){
-		
 		return (email!= null && email.matches(EMAIL_PATTERN));
 	}
 
@@ -134,23 +137,27 @@ public class Validator {
 	 * 
 	 * **************************************************************************************/
 	
-	//ACABAR:
+	//OKK
 	public static boolean cumpleDNI(String dni){
 		
-		String c1= dni.substring(0,1);
-		String c2=dni.substring(3,5);
-		String c3=dni.substring(7,9);
+		/*
+		 * Comparará la letra que recibo por parametro,
+		 * con la letra correcta que debiera tener el dni:
+		 * Ademas controlará la longitud del dni y si contiene los caracteres asociados a DNI_PATTERNS
+		 */
+		if(dni.length()!=LONGITUD_DNI) {
+			return false;
+		}
+		String [] asignacion_Letra = {"T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"};
+		String c1= dni.substring(0,2);
+		String c2=dni.substring(3,6);
+		String c3=dni.substring(7,10);
 		String numeros = c1+c2+c3;
 		int numeros2 = Integer.parseInt(numeros);
-		int codigo = 23%numeros2;
-		char letra1 = dni.charAt(11);
-		return false;
+		int resto = numeros2%23;
+		String letra1 = dni.substring(11);
+		return(dni != null && asignacion_Letra[resto].equals(letra1) && dni.matches(DNI_PATTERN));
 		
-		/*
-		 * dividi String con la parte num y luego 
-		 */
-
-
 	}
 	
 
@@ -181,9 +188,6 @@ public class Validator {
 	public static boolean cumpleRango(double valor, int valorMinimo, int valorMaximo){
 		int valor_parse = (int) valor;
 		return(cumpleRango(valor_parse, valorMinimo, valorMaximo));
-		
-		
-		
 	}
 
 	/* ***************************************************************************************
@@ -245,8 +249,7 @@ public class Validator {
 	 * 
 	 * **************************************************************************************/
 	public static boolean cumpleLongitud(String texto, int longitudMinima, int longitudMaxima){
-		return(longitudMinima<=texto.length() && longitudMaxima<=texto.length());
-		
+		return(longitudMinima<=texto.length() && texto.length()<=longitudMaxima);
 	}
 	/**
 	 * Valida una fecha calendar con m�nimo min
@@ -255,9 +258,10 @@ public class Validator {
 	 * @return
 	 */
 	
+	
+	
 	public static boolean valDateMin(LocalDate fecha, LocalDate min){
-		return fecha.isAfter(min);
-			
+		return fecha.isAfter(min);	
 	}
 	
 	/**
@@ -267,7 +271,7 @@ public class Validator {
 	 * @return
 	 */
 	public static boolean valDateMax(LocalDate fecha, LocalDate max){
-		return fecha.isAfter(max);
+		return fecha.isBefore(max);
 		
 	}	
 	
@@ -279,10 +283,6 @@ public class Validator {
 	 */
 	public static boolean esFechaValida(String fecha){
 		DateTimeFormatter formato= DateTimeFormatter.ofPattern("dd/mm/yyyy");
-		/*
-		 * En vez de un Optional simplficamos el codigo 
-		 * incializando la fecha a null;
-		 */
 		LocalDate fecha_correcta=null;
 		try {
 			fecha_correcta = LocalDate.parse(fecha, formato);
@@ -303,10 +303,7 @@ public class Validator {
 	 * @param password string con la contrase�a introducida
 	 * @return true si cumple con las especificaciones
 	 */
-	
-	/*
-	 * revisar:
-	 */
+
 	public static boolean esPasswordValida(String password){
 		return (password!=null && password.matches(PASSWORD_PATTERN));
 

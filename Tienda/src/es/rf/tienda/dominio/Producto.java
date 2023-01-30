@@ -1,7 +1,10 @@
 package es.rf.tienda.dominio;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.util.Locale;
 
 import es.rf.tienda.util.ErrorMessages;
 import es.rf.tienda.util.Validator;
@@ -56,32 +59,25 @@ public class Producto {
 
 	
 	//CONSTRUCTOR:
+	//constructor vacio --> sin datos:
 	
-	//CAMBIAR para la proxima semana: constructor vacio --> sin datos:
-	public Producto(String id_producto, String pro_descripcion, double pro_precio, String pro_uniVenta, int id_pais,
-			int id_categoria) {
-		
-		setId_producto(id_producto);
-		setPro_descripcion(pro_descripcion);
-		setPro_desLarga(pro_desLarga);
-		setPro_precio(pro_precio);
-		setPro_stock(pro_stock);
-		setPro_fecRepos(pro_fecRepos);
-		setPro_fecActi(pro_fecActi);
-		setPro_fecDesacti(pro_fecDesacti);
-		setPro_uniVenta(pro_uniVenta);
-		setPro_cantXUniVenta(pro_cantXUniVenta);
-		setPro_uniUltNivel(pro_uniUltNivel);
-		setId_pais(id_pais);
-		setPro_usoRecomendado(pro_usoRecomendado);
-		setId_categoria(id_categoria);
-		setPro_stkReservado(pro_stkReservado);
-		setPro_nStkAlto(pro_nStkAlto);
-		setPro_nStkBajo(pro_nStkBajo);
-		setPro_stat(pro_stat);
+	public Producto() throws Exception {
+		super();
 		
 	}
 	
+	/*
+	 * CONSTRUCTOR CON PARAMETROS OBLIGATORIOS:
+	 */
+	public Producto(String id_producto, String pro_descripcion, int pro_precio, String pro_uniVenta, int id_pais, int id_categoria ) throws Exception {
+		setId_producto(id_producto);
+		setPro_descripcion(pro_descripcion);
+		setPro_precio(pro_precio);
+		setPro_uniVenta(pro_uniVenta);
+		setId_pais(id_pais);
+		setId_categoria(id_categoria);
+		
+	}
 
 	//GETTERS AND SETTERS:
 
@@ -89,22 +85,17 @@ public class Producto {
 		return id_producto;
 	}
 
-	public void setId_producto(String id_producto) {
-		
-		if(Validator.isAlfanumeric(id_producto) && Validator.cumpleLongitud(id_producto, longmin_IdProducto, longmax_IdProducto)==true) {
-					this.id_producto = id_producto;	
+	public void setId_producto(String id_producto) throws Exception{
+		if(Validator.codigoProductoValido(id_producto) && Validator.cumpleLongitud(id_producto, longmin_IdProducto, longmax_IdProducto)) {
+				this.id_producto = id_producto;	
 		}
 		else {
 			if(Validator.cumpleLongitud(id_producto, longmin_IdProducto, longmax_IdProducto) == false) {
-						/*
-						 * LANZAMOS LA EXCEPCION CON EL MENSAJE DE LA LONGITUD:
-						 */
+				throw new Exception (ErrorMessages.PROERR_002); //Si el formato del codigo no es correcto:
 						
 			}
 			if(Validator.isAlfanumeric(id_producto)==false) {
-					/*
-					* Lanzamos la excepcion de codigo no valido:
-					*/
+					throw new Exception(ErrorMessages.PROERR_001); //Si la longitud no es la correcta:
 			}
 		}
 	}
@@ -113,38 +104,41 @@ public class Producto {
 		return pro_descripcion;
 	}
 
-	public void setPro_descripcion(String pro_descripcion) {
-		this.pro_descripcion = pro_descripcion;
+	public void setPro_descripcion(String pro_descripcion) throws Exception {
+		if(Validator.cumpleLongitud(pro_descripcion, longmin_descripcion, longmax_descripcion)) {
+			this.pro_descripcion = pro_descripcion;
+		}
+		else {
+			throw new Exception (ErrorMessages.PROERR_003);
+		}
 	}
 
 	public String getPro_desLarga() {
 		return pro_desLarga;
 	}
 
-	public void setPro_desLarga(String pro_desLarga) {
+	public void setPro_desLarga(String pro_desLarga) throws Exception {
 		//descripcion larga
 		if(Validator.cumpleLongitud(pro_desLarga, longmin_descripcion, longmax_descripcion2)) {
 			this.pro_desLarga = pro_desLarga;
 		}
 		else {
-			this.pro_desLarga=null;
-		}
+			throw new Exception (ErrorMessages.PROERR_003);
 				
+		}		
 	}
 
 	public double getPro_precio() {
 		return pro_precio;
 	}
 
-	public void setPro_precio(double pro_precio) {
+	public void setPro_precio(double pro_precio) throws Exception {
 		if(Validator.cumpleRango(pro_precio, rangomin_precio, rangomax_precio)==true) {
 		//Redondeado a 2 digitos:
 			this.pro_precio = Math.round((pro_precio*100.0)/100.0);
 		}
 		else {
-					/*
-					 * Lanzamos excep por rango:
-					 */
+			throw new Exception (ErrorMessages.PROERR_003);
 		}
 	}
 
@@ -153,20 +147,20 @@ public class Producto {
 	}
 
 	public void setPro_stock(int pro_stock) {
-		this.pro_stock = pro_stock;
+		this.pro_stock=pro_stock;
 	}
 
 	public LocalDate getPro_fecRepos() {
 		return pro_fecRepos;
 	}
 
-	public void setPro_fecRepos(LocalDate pro_fecRepos) {
+	public void setPro_fecRepos(LocalDate pro_fecRepos) throws Exception {
 		//fecha de reposicion
 		if(pro_fecRepos.isBefore(hoy) || pro_fecRepos.isEqual(hoy)) {
 			this.pro_fecRepos = pro_fecRepos;
 		}
 		else {
-			this.pro_fecRepos=null;
+			 throw new Exception ("Fecha no valida");
 		}
 	}
 
@@ -174,13 +168,16 @@ public class Producto {
 		return pro_fecActi;
 	}
 
-	public void setPro_fecActi(LocalDate pro_fecActi) {
-		//FECHA DE ACTIVACION:
+	public void setPro_fecActi(LocalDate pro_fecActi) throws Exception {
 		if(pro_fecActi.isAfter(hoy) || pro_fecActi.isEqual(hoy)) {
+			//DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/mm/yyyy"); 
+			//String fechaString = pro_fecActi.toString();
+			//LocalDate fecha = LocalDate.parse(fechaString, formato); 
+			//System.out.println(fecha);
 			this.pro_fecActi = pro_fecActi;
 		}
 		else {
-			this.pro_fecActi = null;
+			 throw new Exception ("No se puede introducir una fecha menor que la fecha de acivacion");
 		}
 	}
 
@@ -189,21 +186,14 @@ public class Producto {
 	}
 
 	public void setPro_fecDesacti(LocalDate pro_fecDesacti) {
-	//FECHA DE DESACTIVACION:
-		
-	if(getPro_fecActi()!=null) {
-			if(pro_fecDesacti.isAfter(getPro_fecActi())) {
-				this.pro_fecDesacti=pro_fecDesacti;
-				
-			}
-			else {
+	//FECHA DE DESACTIVACION:	
+		if(getPro_fecActi()!=null) {
+			if(pro_fecDesacti.isAfter(pro_fecActi)) {
 				this.pro_fecDesacti=pro_fecDesacti;
 			}
-			
-		}
-		else {
-			if(pro_fecDesacti.isAfter(hoy)) {
-				this.pro_fecDesacti = pro_fecDesacti;
+		} else {
+			if(pro_fecDesacti.isAfter(hoy) || pro_fecDesacti.equals(hoy)) {
+				this.pro_fecDesacti=pro_fecDesacti;
 			}
 		}
 	}
@@ -212,13 +202,13 @@ public class Producto {
 		return pro_uniVenta;
 	}
 
-	public void setPro_uniVenta(String pro_uniVenta) {
+	public void setPro_uniVenta(String pro_uniVenta) throws Exception {
 		if(Validator.cumpleLongitud(pro_uniVenta, longmin_uniVentas, longMax_uniVentas)) {
 			this.pro_uniVenta = pro_uniVenta;
 		}
 		
 		else {
-			//Lanzaremos la excepcion:
+			 throw new Exception (ErrorMessages.PROERR_003);
 		}
 	}
 
@@ -227,7 +217,8 @@ public class Producto {
 	}
 
 	public void setPro_cantXUniVenta(double pro_cantXUniVenta) {
-		this.pro_cantXUniVenta=Math.round((pro_cantXUniVenta*100.0)/100.0);
+		this.pro_cantXUniVenta=Math.round((pro_cantXUniVenta*100.0)/100.0); //redondeamos el valor a 2 decimales:
+		
 	}
 
 	public String getPro_uniUltNivel() {
@@ -250,12 +241,12 @@ public class Producto {
 		return pro_usoRecomendado;
 	}
 
-	public void setPro_usoRecomendado(String pro_usoRecomendado) {
+	public void setPro_usoRecomendado(String pro_usoRecomendado) throws Exception {
 		if(Validator.cumpleLongitud(pro_usoRecomendado, longmin_uso, longmax_uso)) {
 			this.pro_usoRecomendado=pro_usoRecomendado;
 		}
 		else {
-			this.pro_usoRecomendado=null;
+			 throw new Exception(ErrorMessages.PROERR_003);
 		}
 		
 	}
@@ -296,12 +287,17 @@ public class Producto {
 		return pro_stat;
 	}
 
-	public void setPro_stat(char pro_stat) {
-		this.pro_stat = pro_stat;
+	public void setPro_stat(char pro_stat) throws Exception {
+		if(Validator.cumpleRango(pro_stat, 1, 1)) {
+			this.pro_stat = 'A'; //por defecto
+		}
+		else {
+			 throw new Exception(ErrorMessages.PROERR_003);
+		}
+		
 	}
 	
-	
-	
+
 	//TOSTRING:
 	@Override
 	public String toString() {
@@ -313,6 +309,7 @@ public class Producto {
 				+ ", id_categoria=" + id_categoria + ", pro_stkReservado=" + pro_stkReservado + ", pro_nStkAlto="
 				+ pro_nStkAlto + ", pro_nStkBajo=" + pro_nStkBajo + ", pro_stat=" + pro_stat + "]";
 	}
+	
 	
 	
 	

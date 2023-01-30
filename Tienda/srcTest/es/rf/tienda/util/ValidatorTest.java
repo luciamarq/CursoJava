@@ -2,14 +2,16 @@ package es.rf.tienda.util;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Formatter;
 
-import junit.framework.Assert;
+import org.junit.jupiter.api.Test;
 
 class ValidatorTest {
 	
-	private String ALFANUMERICO_OK = "ABS123";
-	private String ALFANUMERICO_ERR = "234567898765";
+	private String ALFANUMERICO_OK = "AB123";
+	private String ALFANUMERICO_ERR = "@@@@@";
 	
 	private String TELEFONO_OK = "6750900376";
 	private String TELEFONO_ERR = "2344";
@@ -17,9 +19,23 @@ class ValidatorTest {
 	private String EMAIL = "lu.marquez@hotmail.es";
 	private String EMAIL_ERR = "luciamarquezgaercia";
 	
-	private String DNI = "46087712J";
-	private String DNI_ERR="D446087712";
+	private String DNI = "46.087.712-J";
+	private String DNI_ERR="44771P"; //La letra no se corresponde
 	
+	private String PASSWORD="12345Pm@";
+	private String PASSWORD_ERR="12345P";
+	LocalDate fechaMIN = LocalDate.of(2021, 9, 12);
+	LocalDate hoy = LocalDate.now();
+	String fechaValida = "23/09/2021";
+	String fechaNoValida = "30-5-2023";
+
+	
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/LLLL/yyyy");
+	
+	@Test
+	void TestCodigoProducto() {
+		assertTrue(Validator.codigoProductoValido(ALFANUMERICO_OK));
+	}
 	@Test
 	void testIsAlfanumeric() {
 		assertTrue(Validator.isAlfanumeric(ALFANUMERICO_OK));
@@ -102,7 +118,7 @@ class ValidatorTest {
 
 	@Test
 	void testCumpleLongitud() {
-		assertTrue(Validator.cumpleLongitud("Lucia", 1, 9));
+		assertTrue(Validator.cumpleLongitud("LuciaMa", 5, 9));
 	}
 	
 	@Test 
@@ -112,22 +128,36 @@ class ValidatorTest {
 
 	@Test
 	void testValDateMin() {
-		
+		assertFalse(Validator.valDateMin(fechaMIN,hoy));
 	}
-
+	@Test
+	void testNoValDateMin() {
+		
+	assertTrue(Validator.valDateMin(hoy,fechaMIN));
+	}
+	
 	@Test
 	void testValDateMax() {
-		fail("Not yet implemented");
+		assertTrue(Validator.valDateMax(fechaMIN, hoy));
 	}
 
 	@Test
 	void testEsFechaValida() {
-		fail("Not yet implemented");
+		assertTrue(Validator.esFechaValida(fechaValida));
 	}
 
 	@Test
+	void testNoFechaValida() {
+		assertFalse(Validator.esFechaValida(fechaNoValida));
+	}
+	@Test
 	void testEsPasswordValida() {
-		fail("Not yet implemented");
+		assertTrue(Validator.esPasswordValida(PASSWORD));
+	}
+	
+	@Test
+	void testNoEsPasswordValido() {
+		assertFalse(Validator.esPasswordValida(PASSWORD_ERR));
 	}
 
 }
