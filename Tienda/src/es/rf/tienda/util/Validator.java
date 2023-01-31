@@ -261,7 +261,7 @@ public class Validator {
 	
 	
 	public static boolean valDateMin(LocalDate fecha, LocalDate min){
-		return fecha.isAfter(min);	
+		return fecha.isBefore(min);	
 	}
 	
 	/**
@@ -271,7 +271,7 @@ public class Validator {
 	 * @return
 	 */
 	public static boolean valDateMax(LocalDate fecha, LocalDate max){
-		return fecha.isBefore(max);
+		return fecha.isAfter(max);
 		
 	}	
 	
@@ -282,7 +282,7 @@ public class Validator {
 	 * @return
 	 */
 	public static boolean esFechaValida(String fecha){
-		DateTimeFormatter formato= DateTimeFormatter.ofPattern("dd/mm/yyyy");
+		DateTimeFormatter formato= DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate fecha_correcta=null;
 		try {
 			fecha_correcta = LocalDate.parse(fecha, formato);

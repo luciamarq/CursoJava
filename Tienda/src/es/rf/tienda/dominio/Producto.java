@@ -2,10 +2,6 @@ package es.rf.tienda.dominio;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.Locale;
-
 import es.rf.tienda.util.ErrorMessages;
 import es.rf.tienda.util.Validator;
 
@@ -56,8 +52,6 @@ public class Producto {
 	
 	private LocalDate hoy = LocalDate.now();
 	
-
-	
 	//CONSTRUCTOR:
 	//constructor vacio --> sin datos:
 	
@@ -70,6 +64,7 @@ public class Producto {
 	 * CONSTRUCTOR CON PARAMETROS OBLIGATORIOS:
 	 */
 	public Producto(String id_producto, String pro_descripcion, int pro_precio, String pro_uniVenta, int id_pais, int id_categoria ) throws Exception {
+		
 		setId_producto(id_producto);
 		setPro_descripcion(pro_descripcion);
 		setPro_precio(pro_precio);
@@ -156,7 +151,7 @@ public class Producto {
 
 	public void setPro_fecRepos(LocalDate pro_fecRepos) throws Exception {
 		//fecha de reposicion
-		if(pro_fecRepos.isBefore(hoy) || pro_fecRepos.isEqual(hoy)) {
+		if(pro_fecRepos.isAfter(hoy) || pro_fecRepos.equals(hoy)) {
 			this.pro_fecRepos = pro_fecRepos;
 		}
 		else {
@@ -169,7 +164,7 @@ public class Producto {
 	}
 
 	public void setPro_fecActi(LocalDate pro_fecActi) throws Exception {
-		if(pro_fecActi.isAfter(hoy) || pro_fecActi.isEqual(hoy)) {
+		if(pro_fecActi.isAfter(hoy) || pro_fecActi.equals(hoy)) {
 			//DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/mm/yyyy"); 
 			//String fechaString = pro_fecActi.toString();
 			//LocalDate fecha = LocalDate.parse(fechaString, formato); 
@@ -185,18 +180,30 @@ public class Producto {
 		return pro_fecDesacti;
 	}
 
-	public void setPro_fecDesacti(LocalDate pro_fecDesacti) {
-	//FECHA DE DESACTIVACION:	
-		if(getPro_fecActi()!=null) {
-			if(pro_fecDesacti.isAfter(pro_fecActi)) {
+	public void setPro_fecDesacti(LocalDate pro_fecDesacti) throws Exception {
+	//FECHA DE DESACTIVACION:
+		/*
+		 * si la fecha de activacion existe en ese producto 
+		 * y la fecha de desactivacion es mayor o igual a la fecha de activacion: 
+		 */
+		if(getPro_fecActi()!=null) { 
+			if((pro_fecDesacti.isAfter(getPro_fecActi()) || pro_fecDesacti.equals(getPro_fecActi()))) {
 				this.pro_fecDesacti=pro_fecDesacti;
+		}
+			else {
+				throw new Exception ("La fecha de desactivacion dede ser >= a la de activacion");
 			}
-		} else {
+		}else {
 			if(pro_fecDesacti.isAfter(hoy) || pro_fecDesacti.equals(hoy)) {
 				this.pro_fecDesacti=pro_fecDesacti;
+				
+			}
+			else {
+				throw new Exception ("La fecha de desactivacion debe ser >= actual");
 			}
 		}
 	}
+	
 
 	public String getPro_uniVenta() {
 		return pro_uniVenta;
@@ -296,9 +303,7 @@ public class Producto {
 		}
 		
 	}
-	
 
-	//TOSTRING:
 	@Override
 	public String toString() {
 		return "Producto [id_producto=" + id_producto + ", pro_descripcion=" + pro_descripcion + ", pro_desLarga="
@@ -307,8 +312,15 @@ public class Producto {
 				+ ", pro_uniVenta=" + pro_uniVenta + ", pro_cantXUniVenta=" + pro_cantXUniVenta + ", pro_uniUltNivel="
 				+ pro_uniUltNivel + ", id_pais=" + id_pais + ", pro_usoRecomendado=" + pro_usoRecomendado
 				+ ", id_categoria=" + id_categoria + ", pro_stkReservado=" + pro_stkReservado + ", pro_nStkAlto="
-				+ pro_nStkAlto + ", pro_nStkBajo=" + pro_nStkBajo + ", pro_stat=" + pro_stat + "]";
+				+ pro_nStkAlto + ", pro_nStkBajo=" + pro_nStkBajo + ", pro_stat=" + pro_stat + ", longmin_IdProducto="
+				+ longmin_IdProducto + ", longmax_IdProducto=" + longmax_IdProducto + ", longmin_descripcion="
+				+ longmin_descripcion + ", longmax_descripcion=" + longmax_descripcion + ", longmax_descripcion2="
+				+ longmax_descripcion2 + ", rangomin_precio=" + rangomin_precio + ", rangomax_precio=" + rangomax_precio
+				+ ", longmin_uniVentas=" + longmin_uniVentas + ", longMax_uniVentas=" + longMax_uniVentas
+				+ ", longmin_uso=" + longmin_uso + ", longmax_uso=" + longmax_uso + ", hoy=" + hoy + "]";
 	}
+	
+
 	
 	
 	

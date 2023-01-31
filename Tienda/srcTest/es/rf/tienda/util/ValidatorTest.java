@@ -2,6 +2,7 @@ package es.rf.tienda.util;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Formatter;
@@ -17,13 +18,15 @@ class ValidatorTest {
 	private String TELEFONO_ERR = "2344";
 	
 	private String EMAIL = "lu.marquez@hotmail.es";
-	private String EMAIL_ERR = "luciamarquezgaercia";
+	private String EMAIL_ERR = "luciamarquezarrova.es";
 	
 	private String DNI = "46.087.712-J";
 	private String DNI_ERR="44771P"; //La letra no se corresponde
 	
 	private String PASSWORD="12345Pm@";
 	private String PASSWORD_ERR="12345P";
+	
+	
 	LocalDate fechaMIN = LocalDate.of(2021, 9, 12);
 	LocalDate hoy = LocalDate.now();
 	String fechaValida = "23/09/2021";
@@ -128,17 +131,17 @@ class ValidatorTest {
 
 	@Test
 	void testValDateMin() {
-		assertFalse(Validator.valDateMin(fechaMIN,hoy));
+		assertFalse(Validator.valDateMin(hoy,fechaMIN));
 	}
 	@Test
 	void testNoValDateMin() {
 		
-	assertTrue(Validator.valDateMin(hoy,fechaMIN));
+	assertTrue(Validator.valDateMin(fechaMIN, hoy));
 	}
 	
 	@Test
 	void testValDateMax() {
-		assertTrue(Validator.valDateMax(fechaMIN, hoy));
+		assertTrue(Validator.valDateMax(hoy, fechaMIN));
 	}
 
 	@Test

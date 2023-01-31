@@ -2,6 +2,9 @@ package es.rf.tienda.dominio;
 
 import java.time.LocalDate;
 
+import es.rf.tienda.util.ErrorMessages;
+import es.rf.tienda.util.Validator;
+
 public class Usuario {
 	
 	private static int autonumerico = 1;
@@ -14,8 +17,13 @@ public class Usuario {
 	private LocalDate user_fechAlta;
 	private LocalDate user_fecConfirmacion;
 	
+	
+	//Variables filtros y validacion;
+	private final int longMin_nombre = 5;
+	private final int longMax_nombre = 100;
+	
 	//CONSTRUCTOR CON PARAMETROS OBLIGATORIOS:
-    public Usuario(int id_usuario, String user_nombre, String user_email, String user_pass, int user_tipo) {
+    public Usuario(int id_usuario, String user_nombre, String user_email, String user_pass, int user_tipo) throws Exception {
     	
     	setId_usuario(id_usuario);
     	setUser_nombre(user_nombre);
@@ -46,24 +54,43 @@ public class Usuario {
 		return user_nombre;
 	}
 
-	public void setUser_nombre(String user_nombre) {
-		this.user_nombre = user_nombre;
+	public void setUser_nombre(String user_nombre) throws Exception {
+		if(Validator.cumpleLongitud(user_nombre, longMin_nombre, longMax_nombre)) {
+			this.user_nombre = user_nombre;
+		}
+		else {
+			 throw new Exception (ErrorMessages.PROERR_003);
+			 
+		}
+		
 	}
 
 	public String getUser_email() {
 		return user_email;
 	}
 
-	public void setUser_email(String user_email) {
-		this.user_email = user_email;
+	public void setUser_email(String user_email) throws Exception {
+		if(Validator.isEmailValido(user_email)) {
+			this.user_email = user_email;
+		}
+		else {
+			throw new Exception (ErrorMessages.ERR_EMAIL);
+		}
+		
 	}
 
 	public String getUser_pass() {
 		return user_pass;
 	}
 
-	public void setUser_pass(String user_pass) {
-		this.user_pass = user_pass;
+	public void setUser_pass(String user_pass) throws Exception {
+		if(Validator.esPasswordValida(user_pass)) {
+			this.user_pass = user_pass;	
+		}
+		else {
+			throw new Exception (ErrorMessages.ERR_PASS);
+		}
+		
 	}
 
 	public int getUser_tipo() {
@@ -78,8 +105,14 @@ public class Usuario {
 		return user_dni;
 	}
 
-	public void setUser_dni(String user_dni) {
-		this.user_dni = user_dni;
+	public void setUser_dni(String user_dni) throws Exception {
+		if(Validator.cumpleDNI(user_dni)) {
+			this.user_dni = user_dni;
+		}
+		else {
+			throw new Exception (ErrorMessages.ERR_DNI);
+		}
+		
 	}
 
 	public LocalDate getUser_fechAlta() {
@@ -87,7 +120,7 @@ public class Usuario {
 	}
 
 	public void setUser_fechAlta(LocalDate user_fechAlta) {
-		this.user_fechAlta = user_fechAlta;
+		this.user_fechAlta = LocalDate.now();  //por defecto el dia actual
 	}
 
 	public LocalDate getUser_fecConfirmacion() {
@@ -95,8 +128,19 @@ public class Usuario {
 	}
 
 	public void setUser_fecConfirmacion(LocalDate user_fecConfirmacion) {
-		this.user_fecConfirmacion = user_fecConfirmacion;
+		this.user_fecConfirmacion = LocalDate.now(); //por defecto el dia actual 
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id_usuario=" + id_usuario + ", user_nombre=" + user_nombre + ", user_email=" + user_email
+				+ ", user_pass=" + user_pass + ", user_tipo=" + user_tipo + ", user_dni=" + user_dni
+				+ ", user_fechAlta=" + user_fechAlta + ", user_fecConfirmacion=" + user_fecConfirmacion
+				+ ", longMin_nombre=" + longMin_nombre + ", longMax_nombre=" + longMax_nombre + "]";
+	}
+	
+	
+	
     
     
 	
