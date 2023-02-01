@@ -10,7 +10,7 @@ public class Carta {
 	 */
 	
 	private int numero;
-	private int palo;
+	private String palo;
 	
 	
 	
@@ -23,15 +23,15 @@ public class Carta {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-	public int getPalo() {
+	public String getPalo() {
 		return palo;
 	}
-	public void setPalo(int palo) {
-		this.palo = palo;
+	public void setPalo(String palo2) {
+		this.palo = palo2;
 	}
 	@Override
 	public String toString() {
-		return "numero=" + numero + ", palo=" + palo;
+		return "Carta [numero=" + numero + ", palo=" + palo;
 	}
 	
 	

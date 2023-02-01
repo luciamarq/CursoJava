@@ -1,5 +1,6 @@
 package es.rf.tienda.dominio;
 
+import es.rf.tienda.util.ErrorMessages;
 import es.rf.tienda.util.Validator;
 
 /**
@@ -11,7 +12,9 @@ import es.rf.tienda.util.Validator;
  *
  */
 public class Categoria {
-	
+	private static int LON_MIN = 5;
+	private static int LONG_MAX = 50;
+	private static int autonumerico_cat = 1;
 	private int id_categoria;			//identificador categoria
 	
 	private String cat_nombre;			//nombre de la categoria
@@ -19,7 +22,9 @@ public class Categoria {
 	private String cat_descripcion;		//descripcion de la categoria
 	
 	
-	public Categoria(){}
+	public Categoria(){
+		id_categoria=Categoria.autonumerico_cat++;
+	}
 	
 	/*
 	public boolean isValid(){	
@@ -54,10 +59,16 @@ public class Categoria {
 	
 	/**
 	 * Setter para el nombre de categoria
+	 * @throws Exception 
 	 * 
 	 */
-	public void setCat_nombre(String cat_nombre) {
-		this.cat_nombre = cat_nombre;
+	public void setCat_nombre(String cat_nombre) throws Exception {
+		if(Validator.cumpleLongitud(cat_nombre, LON_MIN, LONG_MAX)) {
+			this.cat_nombre=cat_nombre;
+		}
+		else {
+			throw new Exception ( ErrorMessages.PROERR_003);
+		}
 	}
 	
 	/**

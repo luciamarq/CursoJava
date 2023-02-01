@@ -1,12 +1,17 @@
 package es.rf.tienda.dominio;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import es.rf.tienda.util.ErrorMessages;
 import es.rf.tienda.util.Validator;
 
 public class Usuario {
 	
+	//administrador, visitante, me ayudara en los tipos de permiso:
+	
+	//private static String[] tipoUsuarios = {"Visitante", "Usuario", "Cliente", "Empleado", "Terceros", "Administrador"}; 
 	private static int autonumerico = 1;
 	private int id_usuario;
 	private String user_nombre;
@@ -17,14 +22,13 @@ public class Usuario {
 	private LocalDate user_fechAlta;
 	private LocalDate user_fecConfirmacion;
 	
-	
 	//Variables filtros y validacion;
 	private final int longMin_nombre = 5;
 	private final int longMax_nombre = 100;
 	
 	//CONSTRUCTOR CON PARAMETROS OBLIGATORIOS:
     public Usuario(int id_usuario, String user_nombre, String user_email, String user_pass, int user_tipo) throws Exception {
-    	
+    	id_usuario=autonumerico++;
     	setId_usuario(id_usuario);
     	setUser_nombre(user_nombre);
     	setUser_email(user_email);
@@ -32,15 +36,12 @@ public class Usuario {
     	setUser_tipo(user_tipo);
     	
     }
-
+   
     //CONSTRUCTOR VACIO Y CON EL AUTOINCREMENTO DEL ID:
     public Usuario() {
     	id_usuario = Usuario.autonumerico++;
     }
     
-	public static void setAutonumerico(int autonumerico) {
-		Usuario.autonumerico = autonumerico;
-	}
 
 	public int getId_usuario() {
 		return id_usuario;
@@ -135,9 +136,12 @@ public class Usuario {
 	public String toString() {
 		return "Usuario [id_usuario=" + id_usuario + ", user_nombre=" + user_nombre + ", user_email=" + user_email
 				+ ", user_pass=" + user_pass + ", user_tipo=" + user_tipo + ", user_dni=" + user_dni
-				+ ", user_fechAlta=" + user_fechAlta + ", user_fecConfirmacion=" + user_fecConfirmacion
-				+ ", longMin_nombre=" + longMin_nombre + ", longMax_nombre=" + longMax_nombre + "]";
+				+ ", user_fechAlta=" + user_fechAlta + ", user_fecConfirmacion=" + user_fecConfirmacion + "]";
 	}
+
+	
+	
+
 	
 	
 	
