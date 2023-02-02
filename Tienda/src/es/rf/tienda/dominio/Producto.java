@@ -165,10 +165,6 @@ public class Producto {
 
 	public void setPro_fecActi(LocalDate pro_fecActi) throws Exception {
 		if(pro_fecActi.isAfter(hoy) || pro_fecActi.equals(hoy)) {
-			//DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/mm/yyyy"); 
-			//String fechaString = pro_fecActi.toString();
-			//LocalDate fecha = LocalDate.parse(fechaString, formato); 
-			//System.out.println(fecha);
 			this.pro_fecActi = pro_fecActi;
 		}
 		else {
@@ -181,10 +177,10 @@ public class Producto {
 	}
 
 	public void setPro_fecDesacti(LocalDate pro_fecDesacti) throws Exception {
-	//FECHA DE DESACTIVACION:
 		/*
 		 * si la fecha de activacion existe en ese producto 
-		 * y la fecha de desactivacion es mayor o igual a la fecha de activacion: 
+		 * la fecha de desactivacion es mayor o igual a la fecha de activacion: 
+		 * Si no tiene fecha de activacion, debe ser mayor o igual a la fecha actual:
 		 */
 		if(getPro_fecActi()!=null) { 
 			if((pro_fecDesacti.isAfter(getPro_fecActi()) || pro_fecDesacti.equals(getPro_fecActi()))) {

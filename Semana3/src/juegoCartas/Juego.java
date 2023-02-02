@@ -1,16 +1,17 @@
 package juegoCartas;
 
-import java.util.Iterator;
 import java.util.Set;
-import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 
 public class Juego {
 	
 	static final int CARTAS = 5;
 	static Baraja bar;
 	static Set <Carta> baraja;
-	static Set <Jugador> jugadores;
+	static List <Jugador> jugadores;
 	private static  Set<Carta> mano;
 	
 	public static void main(String[] args) {
@@ -30,9 +31,9 @@ public class Juego {
 		
 	}
 	
-	static Set<Jugador> recibeJugadores(){
+	static List<Jugador> recibeJugadores(){
 		
-		Set<Jugador> salida =new HashSet<>();
+		List <Jugador> salida = new ArrayList<>();
 		
 		Jugador jugador1 = new Jugador("Lucia", 23);
 		Jugador jugador2 = new Jugador("Aitor", 25);
@@ -52,20 +53,25 @@ public class Juego {
 	 * revisar el metodo: 
 	 */
 	
-	static void reparteJugador(Set<Carta> baraja, Set <Jugador> jugadores) {
+	
+	static void reparteJugador(Set<Carta> baraja, List <Jugador> jugadores) {
 		Iterator<Carta> it = baraja.iterator();
-		System.out.println(it);
-		for(int i =0; i<CARTAS; i++){
+		int i;
+		for(i=0; i<CARTAS; i++){
 			for(Jugador j: jugadores) {
-				Jugador as = new Jugador();
-				as.setMano(it.next());
+				Jugador act = 
+				
+				
+				
+				
 				
 				
 			}
 			
-		}			
+		
 
-	}
+	 
+	
 	static void visualizar() {
 		System.out.println();
 	}
