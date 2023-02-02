@@ -2,6 +2,7 @@ package juegoCartas;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ public class Jugador {
 	public Jugador(String nombre, int edad) {
 		setNombre(nombre);
 		setEdad(edad);
+		setMano(mano);
 	}
 	
 	public Jugador() {
@@ -39,6 +41,7 @@ public class Jugador {
 	public Set<Carta> getMano() {
 		return mano;
 	}
+
 
 	public void setMano(Set<Carta> mano) {
 		this.mano = mano;
