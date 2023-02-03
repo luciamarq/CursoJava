@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.rf.tienda.exception.DomainException;
 import es.rf.tienda.util.ErrorMessages;
 import es.rf.tienda.util.Validator;
 
@@ -55,12 +56,12 @@ public class Usuario {
 		return user_nombre;
 	}
 
-	public void setUser_nombre(String user_nombre) throws Exception {
+	public void setUser_nombre(String user_nombre) throws DomainException {
 		if(Validator.cumpleLongitud(user_nombre, longMin_nombre, longMax_nombre)) {
 			this.user_nombre = user_nombre;
 		}
 		else {
-			 throw new Exception (ErrorMessages.PROERR_003);
+			 throw new DomainException (ErrorMessages.PROERR_003);
 			 
 		}
 		
@@ -70,12 +71,12 @@ public class Usuario {
 		return user_email;
 	}
 
-	public void setUser_email(String user_email) throws Exception {
+	public void setUser_email(String user_email) throws DomainException {
 		if(Validator.isEmailValido(user_email)) {
 			this.user_email = user_email;
 		}
 		else {
-			throw new Exception (ErrorMessages.ERR_EMAIL);
+			throw new DomainException (ErrorMessages.ERR_EMAIL);
 		}
 		
 	}
@@ -84,12 +85,12 @@ public class Usuario {
 		return user_pass;
 	}
 
-	public void setUser_pass(String user_pass) throws Exception {
+	public void setUser_pass(String user_pass) throws DomainException {
 		if(Validator.esPasswordValida(user_pass)) {
 			this.user_pass = user_pass;	
 		}
 		else {
-			throw new Exception (ErrorMessages.ERR_PASS);
+			throw new DomainException (ErrorMessages.ERR_PASS);
 		}
 		
 	}
@@ -106,12 +107,12 @@ public class Usuario {
 		return user_dni;
 	}
 
-	public void setUser_dni(String user_dni) throws Exception {
+	public void setUser_dni(String user_dni) throws DomainException {
 		if(Validator.cumpleDNI(user_dni)) {
 			this.user_dni = user_dni;
 		}
 		else {
-			throw new Exception (ErrorMessages.ERR_DNI);
+			throw new DomainException (ErrorMessages.ERR_DNI);
 		}
 		
 	}

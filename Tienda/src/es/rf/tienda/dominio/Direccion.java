@@ -12,6 +12,8 @@ public class Direccion {
 	private String dir_pais;
 	private String dir_correoE;
 	
+	
+	
 		
 		
 }

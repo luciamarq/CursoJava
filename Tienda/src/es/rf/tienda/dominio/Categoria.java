@@ -1,5 +1,6 @@
 package es.rf.tienda.dominio;
 
+import es.rf.tienda.exception.DomainException;
 import es.rf.tienda.util.ErrorMessages;
 import es.rf.tienda.util.Validator;
 
@@ -18,9 +19,7 @@ public class Categoria {
 	private int id_categoria;			//identificador categoria
 	
 	private String cat_nombre;			//nombre de la categoria
-	
 	private String cat_descripcion;		//descripcion de la categoria
-	
 	
 	public Categoria(){
 		id_categoria=Categoria.autonumerico_cat++;
@@ -62,12 +61,12 @@ public class Categoria {
 	 * @throws Exception 
 	 * 
 	 */
-	public void setCat_nombre(String cat_nombre) throws Exception {
+	public void setCat_nombre(String cat_nombre) throws DomainException {
 		if(Validator.cumpleLongitud(cat_nombre, LON_MIN, LONG_MAX)) {
 			this.cat_nombre=cat_nombre;
 		}
 		else {
-			throw new Exception ( ErrorMessages.PROERR_003);
+			throw new DomainException ( ErrorMessages.PROERR_003);
 		}
 	}
 	

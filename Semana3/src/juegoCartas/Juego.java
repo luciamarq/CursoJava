@@ -20,11 +20,14 @@ public class Juego {
 		baraja = bar.getBaraja(); //ya tengo mi baraja inicializada con las 48 cartas:
 		baraja.forEach(System.out::println);
 		
+		
 	
 		
 		jugadores = recibeJugadores(); //Me presenta a los jugadores sin cartas todavia repartidas: (sin mano)
-		System.out.println(jugadores.toString());
+		//System.out.println(jugadores.toString());
 		
+		//reparteCarta(baraja);
+		System.out.println(jugadores.toString());
 		//reparteJugador(baraja, jugadores); //reparte las cartas 
 		
 		//visualiza(jugadores);
@@ -52,25 +55,38 @@ public class Juego {
 	/*
 	 * revisar el metodo: 
 	 */
-	
-	
+	/*
 	static void reparteJugador(Set<Carta> baraja, List <Jugador> jugadores) {
-		Iterator<Carta> it = baraja.iterator();
+		//Iterator<Carta> it = baraja.iterator();
 		int i;
 		for(i=0; i<CARTAS; i++){
-			for(Jugador j: jugadores) {
-				Jugador act = 
+			while(it.hasNext()) {
+				Jugador act = jugadores.set(i, mano);
+				//System.out.println(jugadores1.get(i));
+				act.setMano(it);
+				//it.remove();
+			}
+		}
+			
+	}
+	*/
+	static void reparteCarta(Set <Carta> baraja) {
+		Iterator<Carta> it = baraja.iterator();
+		for(Jugador j: jugadores) {
+			for (Carta carta : baraja) {
+				Jugador act = new Jugador();
+				act.setMano();
 				
-				
-				
-				
+			} 
 				
 				
 			}
 			
-		
+		}
+	
+	
 
-	 
+	
 	
 	static void visualizar() {
 		System.out.println();

@@ -2,6 +2,8 @@ package es.rf.tienda.dominio;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+
+import es.rf.tienda.exception.DomainException;
 import es.rf.tienda.util.ErrorMessages;
 import es.rf.tienda.util.Validator;
 
@@ -55,7 +57,7 @@ public class Producto {
 	//CONSTRUCTOR:
 	//constructor vacio --> sin datos:
 	
-	public Producto() throws Exception {
+	public Producto() throws DomainException {
 		super();
 		
 	}
@@ -80,17 +82,17 @@ public class Producto {
 		return id_producto;
 	}
 
-	public void setId_producto(String id_producto) throws Exception{
+	public void setId_producto(String id_producto) throws DomainException{
 		if(Validator.codigoProductoValido(id_producto) && Validator.cumpleLongitud(id_producto, longmin_IdProducto, longmax_IdProducto)) {
 				this.id_producto = id_producto;	
 		}
 		else {
 			if(Validator.cumpleLongitud(id_producto, longmin_IdProducto, longmax_IdProducto) == false) {
-				throw new Exception (ErrorMessages.PROERR_002); //Si el formato del codigo no es correcto:
+				throw new DomainException (ErrorMessages.PROERR_002); //Si el formato del codigo no es correcto:
 						
 			}
 			if(Validator.isAlfanumeric(id_producto)==false) {
-					throw new Exception(ErrorMessages.PROERR_001); //Si la longitud no es la correcta:
+					throw new DomainException(ErrorMessages.PROERR_001); //Si la longitud no es la correcta:
 			}
 		}
 	}
@@ -99,12 +101,12 @@ public class Producto {
 		return pro_descripcion;
 	}
 
-	public void setPro_descripcion(String pro_descripcion) throws Exception {
+	public void setPro_descripcion(String pro_descripcion) throws DomainException {
 		if(Validator.cumpleLongitud(pro_descripcion, longmin_descripcion, longmax_descripcion)) {
 			this.pro_descripcion = pro_descripcion;
 		}
 		else {
-			throw new Exception (ErrorMessages.PROERR_003);
+			throw new DomainException (ErrorMessages.PROERR_003);
 		}
 	}
 
@@ -112,13 +114,13 @@ public class Producto {
 		return pro_desLarga;
 	}
 
-	public void setPro_desLarga(String pro_desLarga) throws Exception {
+	public void setPro_desLarga(String pro_desLarga) throws DomainException {
 		//descripcion larga
 		if(Validator.cumpleLongitud(pro_desLarga, longmin_descripcion, longmax_descripcion2)) {
 			this.pro_desLarga = pro_desLarga;
 		}
 		else {
-			throw new Exception (ErrorMessages.PROERR_003);
+			throw new DomainException (ErrorMessages.PROERR_003);
 				
 		}		
 	}
@@ -127,13 +129,13 @@ public class Producto {
 		return pro_precio;
 	}
 
-	public void setPro_precio(double pro_precio) throws Exception {
+	public void setPro_precio(double pro_precio) throws DomainException {
 		if(Validator.cumpleRango(pro_precio, rangomin_precio, rangomax_precio)==true) {
 		//Redondeado a 2 digitos:
 			this.pro_precio = Math.round((pro_precio*100.0)/100.0);
 		}
 		else {
-			throw new Exception (ErrorMessages.PROERR_003);
+			throw new DomainException (ErrorMessages.PROERR_003);
 		}
 	}
 
@@ -149,13 +151,13 @@ public class Producto {
 		return pro_fecRepos;
 	}
 
-	public void setPro_fecRepos(LocalDate pro_fecRepos) throws Exception {
+	public void setPro_fecRepos(LocalDate pro_fecRepos) throws DomainException {
 		//fecha de reposicion
 		if(pro_fecRepos.isAfter(hoy) || pro_fecRepos.equals(hoy)) {
 			this.pro_fecRepos = pro_fecRepos;
 		}
 		else {
-			 throw new Exception ("Fecha no valida");
+			 throw new DomainException ("Fecha no valida");
 		}
 	}
 
@@ -163,12 +165,12 @@ public class Producto {
 		return pro_fecActi;
 	}
 
-	public void setPro_fecActi(LocalDate pro_fecActi) throws Exception {
+	public void setPro_fecActi(LocalDate pro_fecActi) throws DomainException {
 		if(pro_fecActi.isAfter(hoy) || pro_fecActi.equals(hoy)) {
 			this.pro_fecActi = pro_fecActi;
 		}
 		else {
-			 throw new Exception ("No se puede introducir una fecha menor que la fecha de acivacion");
+			 throw new DomainException ("No se puede introducir una fecha menor que la fecha de acivacion");
 		}
 	}
 
@@ -176,7 +178,7 @@ public class Producto {
 		return pro_fecDesacti;
 	}
 
-	public void setPro_fecDesacti(LocalDate pro_fecDesacti) throws Exception {
+	public void setPro_fecDesacti(LocalDate pro_fecDesacti) throws DomainException {
 		/*
 		 * si la fecha de activacion existe en ese producto 
 		 * la fecha de desactivacion es mayor o igual a la fecha de activacion: 
@@ -187,7 +189,7 @@ public class Producto {
 				this.pro_fecDesacti=pro_fecDesacti;
 		}
 			else {
-				throw new Exception ("La fecha de desactivacion dede ser >= a la de activacion");
+				throw new DomainException ("La fecha de desactivacion dede ser >= a la de activacion");
 			}
 		}else {
 			if(pro_fecDesacti.isAfter(hoy) || pro_fecDesacti.equals(hoy)) {
@@ -195,7 +197,7 @@ public class Producto {
 				
 			}
 			else {
-				throw new Exception ("La fecha de desactivacion debe ser >= actual");
+				throw new DomainException ("La fecha de desactivacion debe ser >= actual");
 			}
 		}
 	}
@@ -205,13 +207,13 @@ public class Producto {
 		return pro_uniVenta;
 	}
 
-	public void setPro_uniVenta(String pro_uniVenta) throws Exception {
+	public void setPro_uniVenta(String pro_uniVenta) throws DomainException {
 		if(Validator.cumpleLongitud(pro_uniVenta, longmin_uniVentas, longMax_uniVentas)) {
 			this.pro_uniVenta = pro_uniVenta;
 		}
 		
 		else {
-			 throw new Exception (ErrorMessages.PROERR_003);
+			 throw new DomainException (ErrorMessages.PROERR_003);
 		}
 	}
 
@@ -244,12 +246,12 @@ public class Producto {
 		return pro_usoRecomendado;
 	}
 
-	public void setPro_usoRecomendado(String pro_usoRecomendado) throws Exception {
+	public void setPro_usoRecomendado(String pro_usoRecomendado) throws DomainException {
 		if(Validator.cumpleLongitud(pro_usoRecomendado, longmin_uso, longmax_uso)) {
 			this.pro_usoRecomendado=pro_usoRecomendado;
 		}
 		else {
-			 throw new Exception(ErrorMessages.PROERR_003);
+			 throw new DomainException(ErrorMessages.PROERR_003);
 		}
 		
 	}
@@ -290,12 +292,12 @@ public class Producto {
 		return pro_stat;
 	}
 
-	public void setPro_stat(char pro_stat) throws Exception {
+	public void setPro_stat(char pro_stat) throws DomainException {
 		if(Validator.cumpleRango(pro_stat, 1, 1)) {
 			this.pro_stat = 'A'; //por defecto
 		}
 		else {
-			 throw new Exception(ErrorMessages.PROERR_003);
+			 throw new DomainException(ErrorMessages.PROERR_003);
 		}
 		
 	}

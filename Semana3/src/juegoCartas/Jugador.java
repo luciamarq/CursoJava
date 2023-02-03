@@ -48,6 +48,8 @@ public class Jugador {
 	public String toString() {
 		return "Jugador [nombre=" + nombre + ", edad=" + edad + ", mano=" + mano + "]";
 	}
+
+	
 	
 	
 	

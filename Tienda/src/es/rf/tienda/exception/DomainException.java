@@ -1,10 +1,15 @@
 package es.rf.tienda.exception;
 
-import es.rf.tienda.util.ErrorMessages;
-import es.rf.tienda.util.Validator;
-
 @SuppressWarnings("serial")
 public class DomainException extends Exception {
+	
+	public DomainException() {
+		super("Error DomainException");
+	}
+	
+	public DomainException(String mensaje) {
+		super("DAO " + mensaje);
+	}
 	
 	
 	
