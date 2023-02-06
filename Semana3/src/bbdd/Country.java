@@ -1,4 +1,4 @@
-package BBDD;
+package bbdd;
 
 public class Country {
 	

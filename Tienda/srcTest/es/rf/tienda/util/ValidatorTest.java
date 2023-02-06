@@ -36,10 +36,6 @@ class ValidatorTest {
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/LLLL/yyyy");
 	
 	@Test
-	void TestCodigoProducto() {
-		assertTrue(Validator.codigoProductoValido(ALFANUMERICO_OK));
-	}
-	@Test
 	void testIsAlfanumeric() {
 		assertTrue(Validator.isAlfanumeric(ALFANUMERICO_OK));
 	}

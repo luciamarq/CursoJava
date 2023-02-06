@@ -43,5 +43,12 @@ public class ErrorMessages {
 	public final static String ERR_PASS="La contraseña debe contener minusculas, mayusculas y caracteres especiales";
 	
 	public final static String ERR_DNI = " El formato de dni no cumple el estandar debe ser: xx.xxx.xx-X";
+	
+	public final static String ERR_FECH_REPOSICION ="La fecha de reposicion no es valida. Debe ser mayor o igual a la actual";
+	
+	public final static String ERR_FECH_ACTIVACION ="La fecha de activacion no es valida. Debe ser mayor o igual a la actual";
+	public final static String ERR_FECH_DESACTIVACION="La fecha de desactivacion dede ser >= a la de activacion";
+	public final static String ERR_FECH_DESAC2 = "La fecha de desactivacion debe ser mayor o igual a la fecha actual";
+	
 }
 

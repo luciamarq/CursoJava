@@ -291,6 +291,7 @@ public class Validator {
 			}
 		
 		}catch(DateTimeParseException e) {
+			e.printStackTrace();
 			
 		}
 		return false;	

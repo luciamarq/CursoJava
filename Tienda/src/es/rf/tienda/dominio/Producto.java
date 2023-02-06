@@ -157,7 +157,7 @@ public class Producto {
 			this.pro_fecRepos = pro_fecRepos;
 		}
 		else {
-			 throw new DomainException ("Fecha no valida");
+			 throw new DomainException (ErrorMessages.ERR_FECH_REPOSICION);
 		}
 	}
 
@@ -170,7 +170,7 @@ public class Producto {
 			this.pro_fecActi = pro_fecActi;
 		}
 		else {
-			 throw new DomainException ("No se puede introducir una fecha menor que la fecha de acivacion");
+			 throw new DomainException (ErrorMessages.ERR_FECH_ACTIVACION);
 		}
 	}
 
@@ -189,7 +189,7 @@ public class Producto {
 				this.pro_fecDesacti=pro_fecDesacti;
 		}
 			else {
-				throw new DomainException ("La fecha de desactivacion dede ser >= a la de activacion");
+				throw new DomainException (ErrorMessages.ERR_FECH_DESACTIVACION);
 			}
 		}else {
 			if(pro_fecDesacti.isAfter(hoy) || pro_fecDesacti.equals(hoy)) {
@@ -197,7 +197,7 @@ public class Producto {
 				
 			}
 			else {
-				throw new DomainException ("La fecha de desactivacion debe ser >= actual");
+				throw new DomainException (ErrorMessages.ERR_FECH_DESAC2);
 			}
 		}
 	}

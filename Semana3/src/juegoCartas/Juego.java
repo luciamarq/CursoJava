@@ -2,6 +2,8 @@ package juegoCartas;
 
 import java.util.Set;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -10,28 +12,51 @@ public class Juego {
 	
 	static final int CARTAS = 5;
 	static Baraja bar;
-	static Set <Carta> baraja;
+	static List <Carta> baraja;
 	static List <Jugador> jugadores;
-	private static  Set<Carta> mano;
+	private static  List<Carta> mano;
 	
 	public static void main(String[] args) {
 		
 		bar = new Baraja();
-		baraja = bar.getBaraja(); //ya tengo mi baraja inicializada con las 48 cartas:
+		baraja = bar.getBaraja(); //ya tengo mi baraja inicializada con las 52 cartas:
+		
+		//Como hemos usado ArrayList usaremos el metodo shuflle para "mezclar" las cartas:
+		
+		shuffle(baraja);
+		
+		//Imprimimos por pantalla nuestra baraja:
 		baraja.forEach(System.out::println);
 		
 		
-	
-		
 		jugadores = recibeJugadores(); //Me presenta a los jugadores sin cartas todavia repartidas: (sin mano)
-		//System.out.println(jugadores.toString());
-		
-		//reparteCarta(baraja);
+		reparteCarta(baraja);
 		System.out.println(jugadores.toString());
 		//reparteJugador(baraja, jugadores); //reparte las cartas 
 		
 		//visualiza(jugadores);
 		
+	}
+	
+	
+	static void reparteCarta(List <Carta>baraja) {
+		//Iterator <Carta> it = baraja.iterator();
+			for(Carta b : baraja) {	
+			Jugador act = new Jugador();
+			act.adicionarCarta(b);
+			//System.out.println(act.toString());
+			baraja.remove(b);
+			
+		}
+			
+	}
+	
+	
+	
+	
+	//Metodo para mezclar la baraja
+	 static<Carta> void shuffle(List<Carta> baraja) {
+	    Collections.shuffle(baraja);
 	}
 	
 	static List<Jugador> recibeJugadores(){
@@ -55,37 +80,7 @@ public class Juego {
 	/*
 	 * revisar el metodo: 
 	 */
-	/*
-	static void reparteJugador(Set<Carta> baraja, List <Jugador> jugadores) {
-		//Iterator<Carta> it = baraja.iterator();
-		int i;
-		for(i=0; i<CARTAS; i++){
-			while(it.hasNext()) {
-				Jugador act = jugadores.set(i, mano);
-				//System.out.println(jugadores1.get(i));
-				act.setMano(it);
-				//it.remove();
-			}
-		}
-			
-	}
-	*/
-	static void reparteCarta(Set <Carta> baraja) {
-		Iterator<Carta> it = baraja.iterator();
-		for(Jugador j: jugadores) {
-			for (Carta carta : baraja) {
-				Jugador act = new Jugador();
-				act.setMano();
-				
-			} 
-				
-				
-			}
-			
-		}
 	
-	
-
 	
 	
 	static void visualizar() {

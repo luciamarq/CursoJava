@@ -1,21 +1,29 @@
 package juegoCartas;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Jugador {
 	private String nombre;
 	private int edad;
-	private Set<Carta> mano;
+	private List<Carta> mano = new ArrayList<>();
 	
 	public Jugador(String nombre, int edad) {
 		setNombre(nombre);
 		setEdad(edad);
 		setMano(mano);
+		
 	}
 	
 	public Jugador() {
-		mano = new HashSet<>();
+		mano = new ArrayList<>();
+	}
+	
+	
+	 public void adicionarCarta(Carta carta){
+		    this.mano.add(carta);
 	}
 
 
@@ -35,12 +43,12 @@ public class Jugador {
 		this.edad = edad;
 	}
 
-	public Set<Carta> getMano() {
+	public List<Carta> getMano() {
 		return mano;
 	}
 
 
-	public void setMano(Set<Carta> mano) {
+	public void setMano(List<Carta> mano) {
 		this.mano = mano;
 	}
 

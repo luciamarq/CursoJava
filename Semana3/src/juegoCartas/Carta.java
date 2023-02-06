@@ -17,6 +17,7 @@ public class Carta {
 	public Carta() {
 		
 	}
+	
 	public int getNumero() {
 		return numero;
 	}

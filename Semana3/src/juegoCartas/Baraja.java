@@ -1,6 +1,8 @@
 package juegoCartas;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Baraja {
@@ -10,7 +12,7 @@ public class Baraja {
 	
 	//public static final int NUM_cartas=48;
 	
-	private Set<Carta> baraja = new HashSet<>();
+	private List<Carta> baraja = new ArrayList<>();
 	
 	//Se crea la baraja con el constructor:
 	public Baraja() {
@@ -28,13 +30,13 @@ public class Baraja {
 	
 	
 
-	public Set<Carta> getBaraja() {
+	public List<Carta> getBaraja() {
 		return baraja;
 	}
 
 
 
-	public void setBaraja(Set<Carta> baraja) {
+	public void setBaraja(List<Carta> baraja) {
 		this.baraja = baraja;
 	}
 
