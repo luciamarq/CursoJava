@@ -18,9 +18,16 @@ public class App {
 		List <Country> ll = cc.leerTodos();
 		listarCtr(ll);
 		System.out.println("LEER UNO.......");
-		System.out.println(cc.leerUno("'BR'"));
-		Country datos = cc.leerUno("'BR'");
+		System.out.println(cc.leerUno("DE"));
+		Country datos = cc.leerUno("BR");
+		Country al = cc.leerUno("DE");
 		datos.setCountry_name("Lucia");
+		al.setCountry_name("Alemania");
+		cc.actualizar(al);
+		al.setRegion_id("8");
+		System.out.println(al);
+		
+		
 	}
 
 	private static void listarCtr(List<Country> ctr) {
