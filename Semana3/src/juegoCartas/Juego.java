@@ -38,7 +38,6 @@ public class Juego {
 		
 	}
 	
-	
 	static void reparteCarta(List <Carta>baraja) {
 		//Iterator <Carta> it = baraja.iterator();
 			for(Carta b : baraja) {	

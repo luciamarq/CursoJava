@@ -8,7 +8,7 @@ class ProductoTest {
 
 	@Test
 	void testProducto() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test

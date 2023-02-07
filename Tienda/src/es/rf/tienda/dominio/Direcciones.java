@@ -2,7 +2,7 @@ package es.rf.tienda.dominio;
 
 
 
-public class Direccion {
+public class Direcciones {
 
 	private String dir_nombre;
 	private String dir_direccion;

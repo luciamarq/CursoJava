@@ -58,21 +58,21 @@ public class Producto {
 	//constructor vacio --> sin datos:
 	
 	public Producto() throws DomainException {
-		super();
-		
-	}
-	
-	/*
-	 * CONSTRUCTOR CON PARAMETROS OBLIGATORIOS:
-	 */
-	public Producto(String id_producto, String pro_descripcion, int pro_precio, String pro_uniVenta, int id_pais, int id_categoria ) throws Exception {
-		
+		//super();
 		setId_producto(id_producto);
 		setPro_descripcion(pro_descripcion);
 		setPro_precio(pro_precio);
 		setPro_uniVenta(pro_uniVenta);
 		setId_pais(id_pais);
 		setId_categoria(id_categoria);
+		
+		
+	}
+	
+	
+	  //CONSTRUCTOR CON PARAMETROS OBLIGATORIOS:
+	
+	public Producto(String id_producto, String pro_descripcion, int pro_precio, String pro_uniVenta, int id_pais, int id_categoria ) throws Exception {
 		
 	}
 
@@ -83,17 +83,24 @@ public class Producto {
 	}
 
 	public void setId_producto(String id_producto) throws DomainException{
-		if(Validator.codigoProductoValido(id_producto) && Validator.cumpleLongitud(id_producto, longmin_IdProducto, longmax_IdProducto)) {
+		
+		if(id_producto != null) {
+			if(Validator.codigoProductoValido(id_producto) && Validator.cumpleLongitud(id_producto, longmin_IdProducto, longmax_IdProducto)) {
 				this.id_producto = id_producto;	
 		}
-		else {
-			if(Validator.cumpleLongitud(id_producto, longmin_IdProducto, longmax_IdProducto) == false) {
-				throw new DomainException (ErrorMessages.PROERR_002); //Si el formato del codigo no es correcto:
+			else {
+				if(Validator.cumpleLongitud(id_producto, longmin_IdProducto, longmax_IdProducto) == false) {
+				throw new DomainException (ErrorMessages.PROERR_002); //Si la longitud no es correcta:
 						
+				}
+				if(Validator.isAlfanumeric(id_producto)==false) {
+					throw new DomainException(ErrorMessages.PROERR_001); //Si el formato no es el adecuado:
+				}
+			
 			}
-			if(Validator.isAlfanumeric(id_producto)==false) {
-					throw new DomainException(ErrorMessages.PROERR_001); //Si la longitud no es la correcta:
-			}
+		
+		}else {
+			throw new DomainException(ErrorMessages.ERR_CAMPO_VACIO);
 		}
 	}
 
