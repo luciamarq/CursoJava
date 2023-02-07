@@ -1,4 +1,4 @@
-package modelos;
+package rf.curso.S4_MiniApi2.modelos;
 
 import java.util.Date;
 

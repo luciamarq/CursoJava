@@ -14,23 +14,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.CategoriaDao;
+import dao.CountryDao;
 import interfaces.RequestHandler;
-import modelos.Categoria;
+import modelos.Country;
 
-@WebServlet("/Categoria/*")
-public class CategoriaController extends HttpServlet {
+@WebServlet("/Country/*")
+public class CountryController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private CategoriaDao cDao;
-	private Categoria cModelo;
+	private CountryDao cDao;
+	private Country cModelo;
 
 	public void init() {
 //		String jdbcURL = getServletContext().getInitParameter("jdbcURL");
 //		String jdbcUsername = getServletContext().getInitParameter("jdbcUsername");
 //		String jdbcPassword = getServletContext().getInitParameter("jdbcPassword");
 		try {
-			cDao = new CategoriaDao();
-			cModelo = new Categoria();
+			cDao = new CountryDao();
+			cModelo = new Country();
 		} catch (Exception e) {
 			System.out.println("Error init->" + e);
 		}
@@ -87,11 +87,11 @@ public class CategoriaController extends HttpServlet {
 		cDao.guardar(cModelo);
 		// Map<String, Object> sessionMap =
 		// FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		// sessionMap.put("Categoria", c);
+		// sessionMap.put("Country", c);
 		return "/faces/nuevo.xhtml";
 	}
-	public Categoria montaModelo(HttpServletRequest request, HttpServletResponse response) {
-		return new Categoria(0, 
+	public Country montaModelo(HttpServletRequest request, HttpServletResponse response) {
+		return new Country(0, 
 				request.getParameter("cat_nombre"),
 				request.getParameter("cat_descripcion"));
 	}
@@ -106,20 +106,20 @@ public class CategoriaController extends HttpServlet {
 		return "/faces/index.xhtml";
 	}
 
-	public List<Categoria> obtenerCategorias(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+	public List<Country> obtenerCountrys(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		
 		/*
-		 * List<Categoria> listaCategorias = new ArrayList<>(); Categoria c1 = new
-		 * Categoria(); c1.setId(1L); c1.setNombres("Elivar"); c1.setApellidos("Largo");
+		 * List<Country> listaCountrys = new ArrayList<>(); Country c1 = new
+		 * Country(); c1.setId(1L); c1.setNombres("Elivar"); c1.setApellidos("Largo");
 		 * c1.setDireccion("Loja");
 		 * 
-		 * Categoria c2 = new Categoria(); c2.setId(1L); c2.setNombres("Elivar1");
-		 * c2.setApellidos("Largo1"); c2.setDireccion("Loja1"); listaCategorias.add(c1);
-		 * listaCategorias.add(c2);
+		 * Country c2 = new Country(); c2.setId(1L); c2.setNombres("Elivar1");
+		 * c2.setApellidos("Largo1"); c2.setDireccion("Loja1"); listaCountrys.add(c1);
+		 * listaCountrys.add(c2);
 		 * 
-		 * return listaCategorias;
+		 * return listaCountrys;
 		 */
-		return cDao.obtenerCategorias();
+		return cDao.obtenerCountrys();
 	}
 
 	public String editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
@@ -131,25 +131,25 @@ public class CategoriaController extends HttpServlet {
 
 		// Map<String, Object> sessionMap =
 		// FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		// sessionMap.put("Categoria", c);
+		// sessionMap.put("Country", c);
 		return "/faces/editar.xhtml";
 	}
 
-	public String actualizar(Categoria categoria) {
+	public String actualizar(Country country) {
 		// guarda la fecha de actualizacion
 		Date fechaActual = new Date();
-		categoria.setFactualizar(new java.sql.Date(fechaActual.getTime()));
+		Country.setFactualizar(new java.sql.Date(fechaActual.getTime()));
 
 		
-		cDao.editar(categoria);
+		cDao.editar(country);
 		return "/faces/index.xhtml";
 	}
 
-	// eliminar un Categoria
+	// eliminar un Country
 	public String eliminar(Long id) {
 		
 		cDao.eliminar(id);
-		System.out.println("Categoria eliminado..");
+		System.out.println("Country eliminado..");
 		return "/faces/index.xhtml";
 	}
 }
