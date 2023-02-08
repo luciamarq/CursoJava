@@ -1,4 +1,4 @@
-package es.rf.tienda.util;
+package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,6 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Formatter;
 
 import org.junit.jupiter.api.Test;
+
+import es.rf.tienda.util.Validator;
 
 class ValidatorTest {
 	
